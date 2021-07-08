@@ -1,9 +1,12 @@
+import "reflect-metadata";
 import express = require("express");
+import './database'; // Não é necessário indicar o index pois é padrao.
+import { router } from "./routes";
 
 const server = express();
 
-server.get("/", (req, res) => res.send("rota feita"));
+server.use(express.json());
 
-server.post("/post", (req, res) => res.send("metodo post"));
+server.use(router);
 
 server.listen(3000, () => console.log(">> Rodando o servidor"));
